@@ -6,14 +6,20 @@ import UpdateShipmentStatus from "./updateShipmentStatus";
 import UpdateComplianceStatus from "./updateComplianceStatus";
 import MakePayment from "./makePayment";
 
-export default function ConnectedWallet() {
+export default function ConnectedWallet(props) {
+  const { connectedAccount, setConnectedAccount } = props;
+
   return (
     <>
       <div className="flex justify-between border-b px-4 border-gray-200">
         <Image src={"/logo.png"} width={200} height={200} alt="logo" />
         <div className="flex items-center justify-center">
           <div className="h-4 w-4 rounded-full bg-green-400 mr-2"></div>
+          {connectedAccount}
           <button
+            onClick={() => {
+              setConnectedAccount(null);
+            }}
             className="ml-4 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Disconnect
