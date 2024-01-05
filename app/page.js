@@ -6,6 +6,16 @@ import ConnectedWallet from "./connectedWallet";
 
 export default function BorderXchange() {
   const [connectedAccount, setConnectedAccount] = useState(null);
+  window.ethereum.on('accountsChanged', handleAccountsChanged);
+
+  function handleAccountsChanged(accounts) {
+    if (accounts.length === 0) {
+      alert('Please connect to MetaMask.');
+    } else if (accounts[0] !== connectedAccount) {
+      setConnectedAccount(accounts[0])
+
+    }
+  }
 
   //build metamask auth function
   const connectToMetaMask = async () => {
